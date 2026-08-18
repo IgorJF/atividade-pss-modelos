@@ -15,7 +15,7 @@ class CalculadoraDeDescontoService {
         metodosDesconto = new ArrayList<>();
         metodosDesconto.add(new FormaDescontoTipoItem());
         metodosDesconto.add(new FormaDescontoTaxaPorBairro());
-        metodosDesconto.add(new FormaDescontoValorPedido());
+        metodosDesconto.add(new FormaDescontoValorPedido(200));
         metodosDesconto.add(new FormaDescontoTaxaPorTipoCliente());
     }
     
