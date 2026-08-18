@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Pedido {
+class Pedido {
     private double taxaEntrega = 10.0;
     private Cliente cliente;
     private List<Item> itens = new ArrayList<>();
