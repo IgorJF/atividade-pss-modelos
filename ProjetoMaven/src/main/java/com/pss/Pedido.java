@@ -53,14 +53,11 @@ public class Pedido {
     }
     
     public void aplicarDesconto(double desconto){
-        if (descontoTotal < 10){
-            if (descontoTotal + desconto <= 10){
-                descontoTotal += desconto;
-            } 
-            else{
-                descontoTotal += (10 - descontoTotal);
-            }
-        }
+        
+    }
+    
+    public double getDescontoConcedido(){
+        return 
     }
     
     public double getValorPedido(){
