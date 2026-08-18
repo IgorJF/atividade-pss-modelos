@@ -65,8 +65,11 @@ class Pedido {
     }
     
     public double getDescontoConcedido(){
+        descontoTotal = 0;
         for (CupomDescontoEntrega cupom : cupons){
-            descontoTotal += cupom.getValorDesconto();
+            if(descontoTotal < 10.0){
+                descontoTotal += cupom.getValorDesconto();
+            }
         }
         return descontoTotal;
     }
