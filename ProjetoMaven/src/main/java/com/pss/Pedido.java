@@ -6,7 +6,6 @@ package com.pss;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.ArrayList;
 
 public class Pedido {
@@ -32,7 +31,7 @@ public class Pedido {
     }
     
     public Cliente getCliente(){
-        return Cliente;
+        return cliente;
     }
     
     public List<Item> getItens(){
@@ -45,7 +44,7 @@ public class Pedido {
     
     public void adicionarItem(Item item){
         this.itens.add(item);
-        valorTotalItens += item.getValorUnitario();
+        valorTotalItens += item.getValorTotal();
     }
     
     public List<CupomDescontoEntrega> getCuponsDescontoEntrega(){
@@ -53,15 +52,27 @@ public class Pedido {
     }
     
     public void aplicarDesconto(double desconto){
+        double limite = 10.0;
+        double concedido = getDescontoConcedido();
         
+        double disponivel = limite - concedido;
+        
+        if(desconto > disponivel){
+            desconto = disponivel;
+        }
+        
+        taxaEntrega -= desconto;
     }
     
     public double getDescontoConcedido(){
-        return 
+        for (CupomDescontoEntrega cupom : cupons){
+            descontoTotal += cupom.getValorDesconto();
+        }
+        return descontoTotal;
     }
     
     public double getValorPedido(){
-        return valorTotalItens - aplicarDesconto;
+        return valorTotalItens;
     }
     
     @Override
