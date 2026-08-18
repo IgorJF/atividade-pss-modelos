@@ -11,6 +11,12 @@ class Item {
     private String tipo;
     
     public Item(String nome, int quantidade, double valorUnitario, String tipo){
+        if (nome == null){
+            throw new IllegalArgumentException("Informe um nome do item válido");
+        }
+        if (tipo == null){
+            throw new IllegalArgumentException("Informe um tipo de item válido");
+        }
         this.nome = nome;
         this.quantidade = quantidade;
         this.valorUnitario = valorUnitario;

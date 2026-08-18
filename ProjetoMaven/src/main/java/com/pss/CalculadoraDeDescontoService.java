@@ -28,20 +28,10 @@ class CalculadoraDeDescontoService {
             }
             CupomDescontoEntrega cupom = metodo.calcularDesconto(pedido);
             
-            double concedido = pedido.getDescontoConcedido();
-            double disponivel = limite - concedido;
-            if (disponivel <= 0) {
-                break;
-            }
-
-            double desconto = cupom.getValorDesconto();
-            if (desconto > disponivel) {
-                desconto = disponivel;
-                cupom = new CupomDescontoEntrega(cupom.getNomeMetodo(), desconto);
-            }
+            //nao precisa realizar a verificao de preco novamente
 
             pedido.getCuponsDescontoEntrega().add(cupom);
-            pedido.aplicarDesconto(desconto);
+            pedido.aplicarDesconto(cupom.getValorDesconto());
 
             if (pedido.getDescontoConcedido() >= limite) {
                 break;

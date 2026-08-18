@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class FormaDescontoTaxaPorTipoCliente implements IFormaDescontoTaxaEntrega {
     private Map<String, Double> descontosPorTipoCliente;
+    private String tipoCliente;
     
     public FormaDescontoTaxaPorTipoCliente() {
         descontosPorTipoCliente = new HashMap<>();
@@ -20,7 +21,7 @@ public class FormaDescontoTaxaPorTipoCliente implements IFormaDescontoTaxaEntreg
     @Override
     public CupomDescontoEntrega calcularDesconto(Pedido pedido){
         double descontoTotal = 0;
-        String tipoCliente = pedido.getCliente().getTipo();
+        tipoCliente = pedido.getCliente().getTipo();
         
         descontoTotal = descontosPorTipoCliente.get(tipoCliente);//o metodo get vem do proprio Map e busca o valor atraves da chave passada
         

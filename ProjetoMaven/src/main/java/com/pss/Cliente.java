@@ -13,6 +13,15 @@ class Cliente {
     private String cidade;
     
     public Cliente(String nome, String tipo, double fidelidade, String logradouro, String bairro, String cidade){
+        if (nome == null){
+            throw new IllegalArgumentException("Informe um nome válido");
+        }
+        if (tipo == null){
+            throw new IllegalArgumentException("Informe um tipo de cliente válido");
+        }
+        if (bairro == null){
+            throw new IllegalArgumentException("Informe um bairro válido");
+        }
         this.nome = nome;
         this.tipo = tipo;
         this.fidelidade = fidelidade;
