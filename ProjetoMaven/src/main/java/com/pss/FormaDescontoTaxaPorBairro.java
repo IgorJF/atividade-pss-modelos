@@ -7,6 +7,8 @@ package com.pss;
 public class FormaDescontoTaxaPorBairro implements IFormaDescontoTaxaEntrega {
     public String bairroCliente;
     
+    //trocar para map ao inves de if
+    
     @Override
     public CupomDescontoEntrega calcularDesconto(Pedido pedido){
         double descontoTotal = 0;

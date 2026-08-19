@@ -11,15 +11,15 @@ import java.util.List;
 class CalculadoraDeDescontoService {
     private List<IFormaDescontoTaxaEntrega> metodosDesconto;
     
-    public CalculadoraDeDescontoService(){
+    public CalculadoraDeDescontoService(){ //construtor necessario no diagrama
         metodosDesconto = new ArrayList<>();
         metodosDesconto.add(new FormaDescontoTipoItem());
         metodosDesconto.add(new FormaDescontoTaxaPorBairro());
         metodosDesconto.add(new FormaDescontoValorPedido(200));
-        metodosDesconto.add(new FormaDescontoTaxaPorTipoCliente());
+        metodosDesconto.add(new FormaDescontoTaxaPorTipoCliente()); 
     }
     
-    public List<CupomDescontoEntrega> calcularDesconto(Pedido pedido){
+    public List<CupomDescontoEntrega> calcularDesconto(Pedido pedido){ //mudar para void, os descontos serao aplicados e guardados com o aplicarDesconto
         double limite = 10.00;
 
         for (IFormaDescontoTaxaEntrega metodo : metodosDesconto){
@@ -37,6 +37,6 @@ class CalculadoraDeDescontoService {
                 break;
             }
         }
-        return pedido.getCuponsDescontoEntrega();
+        return pedido.getCuponsDescontoEntrega();//mudar para nao precisar retornar a lista, os cupons ficarao guardados diretamente na classe de cupons, que vai ser chamada em aplicarCupom em pedido
     }
 }

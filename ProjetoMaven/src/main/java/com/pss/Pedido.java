@@ -53,6 +53,7 @@ class Pedido {
         return cupons;
     }
 
+    //mudar para todo desconto ser aplicado diretamente na taxa de entrega
     public void aplicarDesconto(double desconto) {
         double limite = 10.0;
         double concedido = getDescontoConcedido();
@@ -66,6 +67,7 @@ class Pedido {
         taxaEntrega -= desconto;
     }
 
+    //mudar para mostrar apenas o total de desconto concedido
     public double getDescontoConcedido() {
         descontoTotal = 0;
         for (CupomDescontoEntrega cupom : cupons){
@@ -79,10 +81,12 @@ class Pedido {
         return descontoTotal;
     }
 
+    //mudar retornar o valor total do pedido já com o desconto
     public double getValorPedido() {
         return valorTotalItens;
     }
 
+    //mudar mostrar todas as informacoes
     @Override
     public String toString() {
         return "Cliente: " + cliente.getNome() + " | Data: " + data + " | Valor Final do Pedido: " + (getValorPedido() - getDescontoConcedido());

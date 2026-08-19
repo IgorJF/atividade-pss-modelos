@@ -54,6 +54,7 @@ public class ProjetoMaven {
 
         int i = 1;
         
+        //mudar for para apenas chamar o toString do pedido e mostrar tudo
         for (Pedido pedido : pedidos){
             System.out.println("Pedido - " + i);
             System.out.println("Valor dos itens do pedido: R$ " + pedido.getValorPedido());
