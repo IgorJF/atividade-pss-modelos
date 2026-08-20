@@ -16,7 +16,6 @@ class Pedido {
     private List<Item> itens = new ArrayList<>();
     private LocalDateTime data;
     private double valorTotalItens = 0;
-    private double descontoTotal = 0;
     private List<CupomDescontoEntrega> cupons = new ArrayList<>();
 
     public Pedido(LocalDateTime data, Cliente cliente) {
@@ -67,28 +66,26 @@ class Pedido {
         taxaEntrega -= desconto;
     }
 
-    //mudar para mostrar apenas o total de desconto concedido
+    //mudar para mostrar apenas para mostrar total de desconto concedido
     public double getDescontoConcedido() {
-        descontoTotal = 0;
-        for (CupomDescontoEntrega cupom : cupons){
-            if (descontoTotal < 10.0){
-                descontoTotal += cupom.getValorDesconto();
-                if (descontoTotal > 10.0){
-                    descontoTotal = 10.0;
-                }
-            }
-        }
-        return descontoTotal;
+        return 10 - taxaEntrega;
     }
 
     //mudar retornar o valor total do pedido já com o desconto
     public double getValorPedido() {
-        return valorTotalItens;
+        return valorTotalItens - getDescontoConcedido();
     }
 
-    //mudar mostrar todas as informacoes
     @Override
     public String toString() {
-        return "Cliente: " + cliente.getNome() + " | Data: " + data + " | Valor Final do Pedido: " + (getValorPedido() - getDescontoConcedido());
+        return "Cliente: " + cliente +
+                "\nData: " + data +
+                "\nItens: " + itens +
+                "\nValor dos Itens: R$ " + valorTotalItens +
+                "\nCupons Utilizados: " + cupons +
+                "\nDesconto Concedido: R$ " + getDescontoConcedido() +
+                "\nTaxa de Entrega: R$ " + taxaEntrega +
+                "\nValor Final do Pedido: R$ " + getValorPedido() +
+                "\n";
     }
 }

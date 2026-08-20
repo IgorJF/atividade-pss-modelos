@@ -4,8 +4,6 @@ package com.pss;
  * @author igorj
  */
 
-
-
 class CupomDescontoEntrega {
     private String nomeMetodo;
     private double valorDesconto;
@@ -25,7 +23,7 @@ class CupomDescontoEntrega {
     
     @Override
     public String toString(){
-        return "Nome Metodo: " + nomeMetodo + "Valor Desconto: " + valorDesconto;
+        return "Nome Metodo: " + nomeMetodo + " | Valor Desconto: " + valorDesconto;
     }
     
 }

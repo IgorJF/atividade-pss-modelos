@@ -56,19 +56,9 @@ public class ProjetoMaven {
         
         //mudar for para apenas chamar o toString do pedido e mostrar tudo
         for (Pedido pedido : pedidos){
+            CalculadoraTaxaDeDescontoService calculaDesconto = new CalculadoraTaxaDeDescontoService();
+            calculaDesconto.calcularDesconto(pedido);
             System.out.println("Pedido - " + i);
-            System.out.println("Valor dos itens do pedido: R$ " + pedido.getValorPedido());
-
-            CalculadoraDeDescontoService calculadoraDescontos = new CalculadoraDeDescontoService();
-
-            List<CupomDescontoEntrega> cupons = calculadoraDescontos.calcularDesconto(pedido);
-
-            System.out.println("Cupons Utilizados: ");
-            for (CupomDescontoEntrega cupom : cupons) {
-                System.out.println(cupom.getNomeMetodo() + " - R$ " + cupom.getValorDesconto());
-            }
-
-            System.out.println("Desconto Concedido: " + pedido.getDescontoConcedido());
             System.out.println(pedido);
             i++;
         }
