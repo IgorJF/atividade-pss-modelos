@@ -6,7 +6,7 @@ package com.pss;
 
 public class FormaDescontoValorPedido implements IFormaDescontoTaxaEntrega {
     private double limiteValorPedido;
-    private double VALOR_DESCONTO = 5.00;
+    private double valorDesconto = 5.00;
     
     public FormaDescontoValorPedido(double limiteValorPedido) {
         this.limiteValorPedido = limiteValorPedido;
@@ -14,7 +14,7 @@ public class FormaDescontoValorPedido implements IFormaDescontoTaxaEntrega {
     
     @Override
     public CupomDescontoEntrega calcularDesconto(Pedido pedido){
-        CupomDescontoEntrega cupom = new CupomDescontoEntrega("Valor Pedido", VALOR_DESCONTO);
+        CupomDescontoEntrega cupom = new CupomDescontoEntrega("Valor Pedido", valorDesconto);
         return cupom;
     }
     

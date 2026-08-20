@@ -20,6 +20,9 @@ class CalculadoraTaxaDeDescontoService {
     }
     
     public void calcularDesconto(Pedido pedido){ //mudar para void, os descontos serao aplicados e guardados com o aplicarDesconto
+        if(pedido == null){
+            throw new IllegalArgumentException("Informe um pedido valido");
+        }
         for (IFormaDescontoTaxaEntrega metodo : metodosDesconto){
             if(metodo.seAplica(pedido)){
                 CupomDescontoEntrega cupom = metodo.calcularDesconto(pedido);
