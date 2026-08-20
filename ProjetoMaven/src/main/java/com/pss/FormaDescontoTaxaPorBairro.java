@@ -4,46 +4,32 @@ package com.pss;
  * @author igorj
  */
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FormaDescontoTaxaPorBairro implements IFormaDescontoTaxaEntrega {
-    public String bairroCliente;
+    private Map<String, Double> bairroCliente;
     
-    //trocar para map ao inves de if
-    
+    public FormaDescontoTaxaPorBairro() {
+        bairroCliente = new HashMap<>();
+        bairroCliente.put("Centro", 2.00);
+        bairroCliente.put("Cidade Maravilhosa", 1.50);
+        bairroCliente.put("Bela Vista", 3.00);
+    } 
     @Override
     public CupomDescontoEntrega calcularDesconto(Pedido pedido){
         double descontoTotal = 0;
-        bairroCliente = pedido.getCliente().getBairro();
-        
-        if(bairroCliente.equals("Centro")){
-            descontoTotal = 2;
-        }
-        else if(bairroCliente.equals("Cidade Maravilhosa")){
-            descontoTotal = 1.5;
-        }
-        else if(bairroCliente.equals("Bela Vista")){
-            descontoTotal = 3;
-        }
-        //se nao for nenhum desses permanece e passa o 0 como parametro
+        descontoTotal = bairroCliente.get(pedido.getCliente().getBairro());
         CupomDescontoEntrega cupom = new CupomDescontoEntrega("Bairro", descontoTotal);
-        
         return cupom;
     }
     
     @Override
     public boolean seAplica(Pedido pedido){
-        bairroCliente = pedido.getCliente().getBairro();
-        if(bairroCliente.equals("Centro")){
+        if (bairroCliente.containsKey(pedido.getCliente().getBairro())){
             return true;
         }
-        else if(bairroCliente.equals("Cidade Maravilhosa")){
-            return true;
-        }
-        else if(bairroCliente.equals("Bela Vista")){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return false;
     }
     
 }
